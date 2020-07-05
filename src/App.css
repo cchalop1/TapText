@@ -1,0 +1,18 @@
+.App {
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.light {
+  margin-top: 10px;
+  margin-right: 10px;
+  height: 70px;
+  width: 70px;
+  position: fixed;
+  right: 0px;
+  border: 4px solid;
+  border-radius: 50px;
+}

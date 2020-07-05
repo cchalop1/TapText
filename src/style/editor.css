@@ -1,0 +1,12 @@
+.editor { 
+    margin-top: 20px;
+    width: 60vh;
+    height: 20vh;
+    border: 2px solid;
+    font-size: 20px;
+}
+
+.text {
+    border: 2px solid;
+    width: 60vh;
+}
