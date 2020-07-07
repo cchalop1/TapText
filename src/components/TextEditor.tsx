@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { TapTextHistory } from '../App';
 import '../style/editor.css';
 
 interface Props {
@@ -6,7 +7,9 @@ interface Props {
     isActive: boolean;
     setIsActive: (arg: boolean) => void;
     setTimer: (arg: number) => void;
-    text:string;
+    text: string;
+    timer: number;
+    addOneElementHistory: (arg: TapTextHistory) => void;
 }
 
 export const TextEditor: React.FC<Props> = (props) => {
@@ -23,9 +26,9 @@ export const TextEditor: React.FC<Props> = (props) => {
     }
 
     useEffect(() => {
-        if (value.length === props.text.length && checkSameValue(value)) { 
-            console.log('Done');
-            // setValue('');
+        if (value.length === props.text.length && checkSameValue(value)) {
+            props.addOneElementHistory(new TapTextHistory(value, props.timer));
+            setValue('');
         }
         if (value === '') {
             props.setIsActive(false);
