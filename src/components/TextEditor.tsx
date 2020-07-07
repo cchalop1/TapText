@@ -3,7 +3,7 @@ import { initialValue } from '../initialValue';
 import '../style/editor.css';
 
 interface Props {
-    sameText: (arg0: boolean) => void
+    setSameText: (arg0: boolean) => void;
 }
 
 export const TextEditor: React.FC<Props> = (props) => {
@@ -21,9 +21,9 @@ export const TextEditor: React.FC<Props> = (props) => {
     }
 
     return (
-        <textarea className='editor' value={value} placeholder='Ecrit ici pour demarer le conteur' onChange={e => {
+        <textarea className='editor' value={value} placeholder='Ecrit ici pour demarer le timer' onChange={e => {
             setValue(e.target.value);
-            props.sameText(compStrWithInitialValue(e));
+            props.setSameText(compStrWithInitialValue(e));
         }} />
     );
 };
