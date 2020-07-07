@@ -26,6 +26,7 @@ export const TextEditor: React.FC<Props> = (props) => {
     }
 
     useEffect(() => {
+        // TODO: passe to app
         if (value.length === props.text.length && checkSameValue(value)) {
             props.addOneElementHistory(new TapTextHistory(value, props.timer));
             setValue('');

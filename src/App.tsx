@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './style/App.css';
 import { DisplayText } from './components/DisplayText';
 import { TextEditor } from './components/TextEditor';
 import { Light } from './components/Light';
 import { DisplayTimer } from './components/DisplayTimer';
+import { History } from './components/History';
 
 export class TapTextHistory {
   text: string;
@@ -18,7 +19,7 @@ const App = () => {
   const [isSameText, setSameText] = useState(true);
   const [timer, setTimer] = useState(0);
   const [isActive, setIsActive] = useState(false);
-  const [text, setText] = useState('Pour modifier ce text il faut clicker sur le bouton edit');
+  const [text, setText] = useState('bonjour bonjour bonjour');
   const [tapTextHistory, setTapTextHistory] = useState<Array<TapTextHistory>>([]);
 
 
@@ -26,8 +27,14 @@ const App = () => {
     let historyCopy = tapTextHistory;
     historyCopy.push(newHistory);
     setTapTextHistory(historyCopy);
-    console.log(tapTextHistory)
+    localStorage.setItem('history', JSON.stringify(tapTextHistory));
   }
+
+  useEffect(() => {
+    let save: string | null = localStorage.getItem('history');
+    if (save)
+      setTapTextHistory(JSON.parse(save));
+  }, [])
 
   return (
     <div className="App">
@@ -43,7 +50,8 @@ const App = () => {
         addOneElementHistory={addOneElementHistory}
         timer={timer}
       />
-    </div >
+      <History history={tapTextHistory} />
+    </div>
   );
 }
 
