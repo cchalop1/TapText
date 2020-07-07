@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { initialValue } from '../initialValue';
 import '../style/editor.css';
 
 interface Props {
@@ -7,23 +6,24 @@ interface Props {
     isActive: boolean;
     setIsActive: (arg: boolean) => void;
     setTimer: (arg: number) => void;
+    text:string;
 }
 
 export const TextEditor: React.FC<Props> = (props) => {
     const [value, setValue] = useState<string>('');
 
     const checkSameValue = (str: string) => {
-        if (str.length > initialValue.length)
+        if (str.length > props.text.length)
             return false;
-        for (let i = 0; i < str.length && i < initialValue.length; i++) {
-            if (str[i] !== initialValue[i])
+        for (let i = 0; i < str.length && i < props.text.length; i++) {
+            if (str[i] !== props.text[i])
                 return false;
         }
         return true;
     }
 
     useEffect(() => {
-        if (value.length === initialValue.length && checkSameValue(value)) { 
+        if (value.length === props.text.length && checkSameValue(value)) { 
             console.log('Done');
             // setValue('');
         }
