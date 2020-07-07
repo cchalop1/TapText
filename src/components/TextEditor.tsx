@@ -23,6 +23,10 @@ export const TextEditor: React.FC<Props> = (props) => {
     }
 
     useEffect(() => {
+        if (value.length === initialValue.length && checkSameValue(value)) { 
+            console.log('Done');
+            // setValue('');
+        }
         if (value === '') {
             props.setIsActive(false);
             props.setTimer(0);
