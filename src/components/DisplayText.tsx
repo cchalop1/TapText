@@ -7,7 +7,7 @@ export const DisplayText : React.FC = () => {
 
     return (
         <div className='text'>
-            <h2>{value}</h2>
+            <p>{value}</p>
         </div>
     );
 };

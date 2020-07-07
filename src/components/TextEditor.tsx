@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { initialValue } from '../initialValue';
 import '../style/editor.css';
 
 interface Props {
-    setSameText: (arg0: boolean) => void;
+    setSameText: (arg: boolean) => void;
+    isActive: boolean;
+    setIsActive: (arg: boolean) => void;
+    setTimer: (arg: number) => void;
 }
 
 export const TextEditor: React.FC<Props> = (props) => {
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState<string>('');
 
-    const compStrWithInitialValue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        const str = e.target.value;
+    const checkSameValue = (str: string) => {
         if (str.length > initialValue.length)
             return false;
         for (let i = 0; i < str.length && i < initialValue.length; i++) {
@@ -20,11 +22,25 @@ export const TextEditor: React.FC<Props> = (props) => {
         return true;
     }
 
+    useEffect(() => {
+        if (value === '') {
+            props.setIsActive(false);
+            props.setTimer(0);
+        }
+    }, [value, props.isActive]);
+
     return (
-        <textarea className='editor' value={value} placeholder='Ecrit ici pour demarer le timer' onChange={e => {
-            setValue(e.target.value);
-            props.setSameText(compStrWithInitialValue(e));
-        }} />
+        <textarea
+            className='editor'
+            value={value}
+            onChange={e => {
+                if (!props.isActive) {
+                    props.setTimer(Date.now());
+                    props.setIsActive(true);
+                }
+                setValue(e.target.value);
+                props.setSameText(checkSameValue(e.target.value));
+            }} />
     );
 };
 
