@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { TapTextHistory } from '../App';
+import React from 'react';
 import '../style/editor.css';
 
 interface Props {
@@ -8,46 +7,33 @@ interface Props {
     setIsActive: (arg: boolean) => void;
     setTimer: (arg: number) => void;
     text: string;
+    setText: (text: string) => void;
+    initText: string;
     timer: number;
-    addOneElementHistory: (arg: TapTextHistory) => void;
 }
 
-export const TextEditor: React.FC<Props> = (props) => {
-    const [value, setValue] = useState<string>('');
-
-    const checkSameValue = (str: string) => {
-        if (str.length > props.text.length)
+export const checkSameValue = (str: string, initStr: string) => {
+    if (str.length > initStr.length)
+        return false;
+    for (let i = 0; i < str.length && i < initStr.length; i++) {
+        if (str[i] !== initStr[i])
             return false;
-        for (let i = 0; i < str.length && i < props.text.length; i++) {
-            if (str[i] !== props.text[i])
-                return false;
-        }
-        return true;
     }
+    return true;
+};
 
-    useEffect(() => {
-        // TODO: passe to app
-        if (value.length === props.text.length && checkSameValue(value)) {
-            props.addOneElementHistory(new TapTextHistory(value, props.timer));
-            setValue('');
-        }
-        if (value === '') {
-            props.setIsActive(false);
-            props.setTimer(0);
-        }
-    }, [value, props.isActive]);
-
+export const TextEditor: React.FC<Props> = (props) => {
     return (
         <textarea
             className='editor'
-            value={value}
+            value={props.text}
             onChange={e => {
                 if (!props.isActive) {
                     props.setTimer(Date.now());
                     props.setIsActive(true);
                 }
-                setValue(e.target.value);
-                props.setSameText(checkSameValue(e.target.value));
+                props.setText(e.target.value);
+                props.setSameText(checkSameValue(e.target.value, props.initText));
             }} />
     );
 };
