@@ -15,7 +15,7 @@ export const DisplayText: React.FC<Props> = (props) => {
                 type='text'
                 value={props.text}
                 onChange={(e) => props.setText(e.target.value)} />
-                <button onClick={(e) => setIsEdit(!isEdit)}>OK</button></div>)
+                <button className="btn ok" onClick={(e) => setIsEdit(!isEdit)}>OK</button></div>)
                 : <p onClick={(e) => setIsEdit(!isEdit)}>{props.text}</p>}
         </div>
     );

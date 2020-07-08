@@ -55,6 +55,10 @@ const App = () => {
 
   }, [text, initText, tapTextHistory, timer])
 
+  const clearHistory = () => {
+    setTapTextHistory([]);
+  }
+
   return (
     <div className="App">
       {isActive ? <DisplayTimer timer={timer} /> : <p>00:00:00</p>}
@@ -70,8 +74,8 @@ const App = () => {
         text={text}
         setText={setText}
       />
-      <History history={tapTextHistory} />
-      <ChartHistory history={tapTextHistory}/>
+      <History history={tapTextHistory} clearHistory={clearHistory} />
+      <ChartHistory history={tapTextHistory} />
 
     </div>
   );

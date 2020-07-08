@@ -19,5 +19,5 @@ export const DownloadData: React.FC<Props> = (props) => {
         document.body.removeChild(element);
     }
 
-    return <button className="dl-btn" onClick={(e) => download()}>Downloads Data</button>;
+    return <button className="btn dl" onClick={(e) => download()}>Downloads Data</button>;
 }
