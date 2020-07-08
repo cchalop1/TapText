@@ -5,18 +5,21 @@ import { TextEditor, checkSameValue } from './components/TextEditor';
 import { Light } from './components/Light';
 import { DisplayTimer } from './components/DisplayTimer';
 import { History } from './components/History';
+import { ChartHistory } from './components/ChartHistory';
 
 export class TapTextHistory {
   text: string;
   time: number;
+  date: string;
   constructor(text: string, time: number) {
     this.text = text;
     this.time = Date.now() - time;
+    this.date = new Date().toISOString();
   }
 }
 
 const App = () => {
-  const [isSameText, setSameText] = useState(true);
+  const [isSameText, setSameText] = useState(false);
   const [timer, setTimer] = useState(0);
   const [text, setText] = useState<string>('');
   const [isActive, setIsActive] = useState(false);
@@ -31,7 +34,7 @@ const App = () => {
   }, [])
 
   useEffect(() => {
-    
+
     const addOneElementHistory = (newHistory: TapTextHistory) => {
       let historyCopy = tapTextHistory;
       historyCopy.push(newHistory);
@@ -42,6 +45,7 @@ const App = () => {
     if (text.length === initText.length && checkSameValue(text, initText)) {
       addOneElementHistory(new TapTextHistory(text, timer));
       setText('');
+      setSameText(false);
     }
 
     if (text === '') {
@@ -67,6 +71,8 @@ const App = () => {
         setText={setText}
       />
       <History history={tapTextHistory} />
+      <ChartHistory history={tapTextHistory}/>
+
     </div>
   );
 }

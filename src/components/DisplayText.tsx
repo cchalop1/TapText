@@ -10,7 +10,7 @@ export const DisplayText: React.FC<Props> = (props) => {
     const [isEdit, setIsEdit] = useState<boolean>(false);
 
     return (
-        <div className='text'>
+        <div className="text">
             {isEdit ? (<div><input
                 type='text'
                 value={props.text}

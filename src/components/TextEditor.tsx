@@ -25,7 +25,7 @@ export const checkSameValue = (str: string, initStr: string) => {
 export const TextEditor: React.FC<Props> = (props) => {
     return (
         <textarea
-            className='editor'
+            className="editor"
             value={props.text}
             onChange={e => {
                 if (!props.isActive) {
