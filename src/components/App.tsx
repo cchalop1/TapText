@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import './style/App.css';
-import { DisplayText } from './components/DisplayText';
-import { TextEditor, checkSameValue } from './components/TextEditor';
-import { Light } from './components/Light';
-import { DisplayTimer } from './components/DisplayTimer';
-import { History } from './components/History';
-import { ChartHistory } from './components/ChartHistory';
+import '../style/App.css';
+import { DisplayText } from './DisplayText';
+import { TextEditor, checkSameValue } from './TextEditor';
+import { DisplayTimer } from './DisplayTimer';
+import { History } from './History';
+import { ChartHistory } from './ChartHistory';
 
 export class TapTextHistory {
   text: string;
@@ -14,7 +13,7 @@ export class TapTextHistory {
   constructor(text: string, time: number) {
     this.text = text;
     this.time = Date.now() - time;
-    this.date = new Date().toISOString();
+    this.date = new Date().toString().split("GMT")[0];
   }
 }
 
@@ -57,24 +56,28 @@ const App = () => {
 
   const clearHistory = () => {
     setTapTextHistory([]);
+    localStorage.clear();
   }
 
   return (
     <div className="App">
-      {isActive ? <DisplayTimer timer={timer} /> : <p>00:00:00</p>}
-      <DisplayText text={initText} setText={setInitText} />
-      <Light isSameText={isSameText} />
-      <TextEditor
-        initText={initText}
-        setSameText={setSameText}
-        isActive={isActive}
-        setIsActive={setIsActive}
-        setTimer={setTimer}
-        timer={timer}
-        text={text}
-        setText={setText}
-      />
-      <History history={tapTextHistory} clearHistory={clearHistory} />
+      <div className="center">
+        <DisplayTimer timer={timer} isActive={isActive} />
+        <div className="main">
+          <DisplayText text={initText} setText={setInitText} />
+          <TextEditor
+            initText={initText}
+            isSameText={isSameText}
+            setSameText={setSameText}
+            isActive={isActive}
+            setIsActive={setIsActive}
+            setTimer={setTimer}
+            text={text}
+            setText={setText}
+          />
+        </div>
+        <History history={tapTextHistory} clearHistory={clearHistory} />
+      </div>
       <ChartHistory history={tapTextHistory} />
 
     </div>
