@@ -13,7 +13,7 @@ export class TapTextHistory {
   constructor(text: string, time: number) {
     this.text = text;
     this.time = Date.now() - time;
-    this.date = new Date().toISOString();
+    this.date = new Date().toString().split("GMT")[0];
   }
 }
 
