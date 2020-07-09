@@ -1,7 +1,7 @@
 import React from 'react';
-import { TapTextHistory } from '../App';
-import { ListHistory } from './ListHistory';
+import { TapTextHistory } from './App';
 import { DownloadData } from './DownloadData';
+import '../style/editor.css';
 
 interface Props {
     history: Array<TapTextHistory>;
@@ -10,8 +10,7 @@ interface Props {
 
 export const History: React.FC<Props> = (props) => {
     return (<div className="history">
-        <ListHistory history={props.history} />
-        <button className="btn clear" onClick={() => props.clearHistory()}>Clear History</button>
+        <button className="clear" onClick={() => props.clearHistory()}><b>Clear History</b></button>
         <DownloadData history={props.history} />
     </div>);
 }

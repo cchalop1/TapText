@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Chart from 'chart.js';
-import { TapTextHistory } from '../App';
+import { TapTextHistory } from './App';
+import '../style/editor.css';
 
 interface Props {
     history: Array<TapTextHistory>;
@@ -47,9 +48,11 @@ export const ChartHistory: React.FC<Props> = (props) => {
     }, [chartRef, props.history]);
 
     return (
-        <canvas
-            id='myChart'
-            ref={chartRef}
-        />
+        <div className="graph">
+            <canvas
+                id='myChart'
+                ref={chartRef}
+            />
+        </div>
     );
 }

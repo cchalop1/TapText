@@ -2,6 +2,7 @@ import React from 'react';
 import '../style/editor.css';
 
 interface Props {
+    isSameText: boolean;
     setSameText: (arg: boolean) => void;
     isActive: boolean;
     setIsActive: (arg: boolean) => void;
@@ -9,7 +10,6 @@ interface Props {
     text: string;
     setText: (text: string) => void;
     initText: string;
-    timer: number;
 }
 
 export const checkSameValue = (str: string, initStr: string) => {
@@ -23,10 +23,24 @@ export const checkSameValue = (str: string, initStr: string) => {
 };
 
 export const TextEditor: React.FC<Props> = (props) => {
+    let borderColor: string | null = null;
+
+    if (props.isActive === true) {
+        borderColor = props.isSameText ? 'green' : 'red';
+    } else {
+        borderColor = 'black';
+    }
+
     return (
         <textarea
+            autoFocus
             className="editor"
             value={props.text}
+            placeholder="Write text here !"
+            style={{
+                borderColor: borderColor,
+
+            }}
             onChange={e => {
                 if (!props.isActive) {
                     props.setTimer(Date.now());

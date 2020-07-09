@@ -11,11 +11,11 @@ export const DisplayText: React.FC<Props> = (props) => {
 
     return (
         <div className="text">
-            {isEdit ? (<div><input
+            {isEdit ? (<div className="text"><input
                 type='text'
                 value={props.text}
                 onChange={(e) => props.setText(e.target.value)} />
-                <button className="btn ok" onClick={(e) => setIsEdit(!isEdit)}>OK</button></div>)
+                <button className="ok" onClick={(e) => setIsEdit(!isEdit)}>OK</button></div>)
                 : <p onClick={(e) => setIsEdit(!isEdit)}>{props.text}</p>}
         </div>
     );

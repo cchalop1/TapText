@@ -1,5 +1,5 @@
 import React from 'react';
-import { TapTextHistory } from '../App';
+import { TapTextHistory } from './App';
 
 const FILENAME: string = 'data-taptext.json';
 
@@ -19,5 +19,5 @@ export const DownloadData: React.FC<Props> = (props) => {
         document.body.removeChild(element);
     }
 
-    return <button className="btn dl" onClick={(e) => download()}>Downloads Data</button>;
+    return <button className="dl" onClick={(e) => download()}><b>Downloads</b></button>;
 }

@@ -1,5 +1,6 @@
 import React from 'react';
-import { TapTextHistory } from '../App';
+import { TapTextHistory } from './App';
+import '../style/editor.css';
 
 interface Props {
     history: Array<TapTextHistory>;
