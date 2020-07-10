@@ -21,7 +21,8 @@
 }
 
 .editor {
-    width: 100%;
+    width: 80%;
+    height: 15vh;
 }
 
 .graph {
@@ -35,4 +36,8 @@
 
 .graph canvas {
     height: 35vh;
+}
+
+.lasttime {
+    font-size: 15px;
 }

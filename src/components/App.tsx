@@ -3,8 +3,9 @@ import '../style/App.css';
 import { DisplayText } from './DisplayText';
 import { TextEditor, checkSameValue } from './TextEditor';
 import { DisplayTimer } from './DisplayTimer';
-import { History } from './History';
+import { Actions } from './Actions';
 import { ChartHistory } from './ChartHistory';
+import { LastTime } from './LastTime';
 
 export class TapTextHistory {
   text: string;
@@ -24,6 +25,7 @@ const App = () => {
   const [isActive, setIsActive] = useState(false);
   const [initText, setInitText] = useState('bonjour bonjour bonjour');
   const [tapTextHistory, setTapTextHistory] = useState<Array<TapTextHistory>>([]);
+  const [isEdit, setIsEdit] = useState<boolean>(false);
 
 
   useEffect(() => {
@@ -63,8 +65,13 @@ const App = () => {
     <div className="App">
       <div className="center">
         <DisplayTimer timer={timer} isActive={isActive} />
+        <LastTime history={tapTextHistory} />
         <div className="main">
-          <DisplayText text={initText} setText={setInitText} />
+          <DisplayText
+            text={initText}
+            setText={setInitText}
+            isEdit={isEdit}
+            setIsEdit={setIsEdit} />
           <TextEditor
             initText={initText}
             isSameText={isSameText}
@@ -76,7 +83,11 @@ const App = () => {
             setText={setText}
           />
         </div>
-        <History history={tapTextHistory} clearHistory={clearHistory} />
+        <Actions
+          history={tapTextHistory}
+          clearHistory={clearHistory}
+          isEdit={isEdit}
+          setIsEdit={setIsEdit} />
       </div>
       <ChartHistory history={tapTextHistory} />
 
