@@ -51,4 +51,3 @@ export const TextEditor: React.FC<Props> = (props) => {
             }} />
     );
 };
-

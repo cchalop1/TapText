@@ -13,7 +13,7 @@ export const ChartHistory: React.FC<Props> = (props) => {
     useEffect(() => {
         const myChartRef = chartRef.current?.getContext("2d");
         const labels: string[] = props.history.map(el => el.date);
-        const data: number[] = props.history.map(el => {
+        const dataWordsPerMinutes: number[] = props.history.map(el => {
             let wordsPerMinute: number = (el.text.split(' ').length / (el.time / 60000));
             return wordsPerMinute;
         });
@@ -24,8 +24,8 @@ export const ChartHistory: React.FC<Props> = (props) => {
                 labels: labels,
                 datasets: [
                     {
-                        label: "Words per seconds",
-                        data: data,
+                        label: "Words per minutes",
+                        data: dataWordsPerMinutes,
                     }
                 ]
             },

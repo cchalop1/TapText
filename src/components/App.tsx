@@ -23,15 +23,18 @@ const App = () => {
   const [timer, setTimer] = useState(0);
   const [text, setText] = useState<string>('');
   const [isActive, setIsActive] = useState(false);
-  const [initText, setInitText] = useState('bonjour bonjour bonjour');
+  const [initText, setInitText] = useState('Je suis la phrase que tu dois ecrire.');
   const [tapTextHistory, setTapTextHistory] = useState<Array<TapTextHistory>>([]);
   const [isEdit, setIsEdit] = useState<boolean>(false);
 
 
   useEffect(() => {
     let save: string | null = localStorage.getItem('history');
-    if (save)
-      setTapTextHistory(JSON.parse(save));
+    if (save) {
+      const listHistory: TapTextHistory[] = JSON.parse(save);
+      setTapTextHistory(listHistory);
+      setInitText(listHistory[listHistory.length - 1].text);
+    }
   }, [])
 
   useEffect(() => {
@@ -43,15 +46,16 @@ const App = () => {
       localStorage.setItem('history', JSON.stringify(tapTextHistory));
     }
 
+    if (text === '') {
+      setIsActive(false);
+      setTimer(0);
+      return;
+    }
+
     if (text.length === initText.length && checkSameValue(text, initText)) {
       addOneElementHistory(new TapTextHistory(text, timer));
       setText('');
       setSameText(false);
-    }
-
-    if (text === '') {
-      setIsActive(false);
-      setTimer(0);
     }
 
   }, [text, initText, tapTextHistory, timer])
