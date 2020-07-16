@@ -14,8 +14,7 @@
 }
 
 .text {
-    font-size: 25px;
-    padding: 3px;
+    font-size: 20px;
     user-select: none;
     width: auto; 
     height: 20vh;

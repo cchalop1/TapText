@@ -18,7 +18,7 @@ export const DisplayText: React.FC<Props> = (props) => {
             refText : initText
         }
         for (let i = 0; i < text.length; i++) {
-            if (text[i] === initText[i]) {
+            if (text[i] === initText[i] && allText.diffText.length === 0) {
                 allText.progressText += text[i];
             } else {
                 allText.diffText += text[i];
