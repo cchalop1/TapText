@@ -18,6 +18,7 @@
     padding: 3px;
     user-select: none;
     width: auto; 
+    height: 20vh;
 }
 
 .editor {

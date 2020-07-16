@@ -72,7 +72,8 @@ const App = () => {
         <LastTime history={tapTextHistory} />
         <div className="main">
           <DisplayText
-            text={initText}
+            intiText={initText}
+            text={text}
             setText={setInitText}
             isEdit={isEdit}
             setIsEdit={setIsEdit} />

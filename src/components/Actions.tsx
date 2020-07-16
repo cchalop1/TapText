@@ -12,7 +12,11 @@ interface Props {
 
 export const Actions: React.FC<Props> = (props) => {
     return (<div className="history">
-        <button className="edit" onClick={() => props.setIsEdit(!props.isEdit)}><b>Edit</b></button>
+        {props.isEdit ?
+            <button className="ok" onClick={(e) => props.setIsEdit(false)}>OK</button>
+            :
+            <button className="edit" onClick={() => props.setIsEdit(true)}><b>Edit</b></button>
+        }
         <button className="clear" onClick={() => props.clearHistory()}><b>Clear History</b></button>
         <DownloadData history={props.history} />
     </div>);
