@@ -26,6 +26,7 @@ const App = () => {
   const [initText, setInitText] = useState('Je suis la phrase que tu dois ecrire.');
   const [tapTextHistory, setTapTextHistory] = useState<Array<TapTextHistory>>([]);
   const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [audio, setAudio] = useState<HTMLAudioElement | null>(new Audio('https://lasonotheque.org/UPLOAD/mp3/1111.mp3'));
 
 
   useEffect(() => {
@@ -76,6 +77,8 @@ const App = () => {
             text={text}
             setText={setInitText}
             isEdit={isEdit}
+            audio={audio}
+            setAudio={setAudio}
             setIsEdit={setIsEdit} />
           <TextEditor
             initText={initText}
@@ -86,6 +89,7 @@ const App = () => {
             setTimer={setTimer}
             text={text}
             setText={setText}
+            audio={audio}
           />
         </div>
         <Actions
@@ -93,9 +97,9 @@ const App = () => {
           clearHistory={clearHistory}
           isEdit={isEdit}
           setIsEdit={setIsEdit} />
+        <p className="name">Create by <a href="https://cchalop1.com/">cchalop1</a></p>
       </div>
       <ChartHistory history={tapTextHistory} />
-
     </div>
   );
 }

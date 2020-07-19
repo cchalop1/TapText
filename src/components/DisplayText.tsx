@@ -1,5 +1,6 @@
 import React from 'react';
 import '../style/editor.css';
+import { EditOption } from './EditOption';
 
 interface Props {
     text: string;
@@ -7,6 +8,8 @@ interface Props {
     setText: (text: string) => void;
     isEdit: boolean;
     setIsEdit: (edit: boolean) => void;
+    audio: HTMLAudioElement | null;
+    setAudio: (param: HTMLAudioElement | null) => void;
 }
 
 export const DisplayText: React.FC<Props> = (props) => {
@@ -15,7 +18,7 @@ export const DisplayText: React.FC<Props> = (props) => {
         let allText = {
             progressText: '',
             diffText: '',
-            refText : initText
+            refText: initText
         }
         for (let i = 0; i < text.length; i++) {
             if (text[i] === initText[i] && allText.diffText.length === 0) {
@@ -34,11 +37,12 @@ export const DisplayText: React.FC<Props> = (props) => {
 
     return (
         <div className="edit-text">
-            {props.isEdit ? (<div className="text"><input
-                type='text'
-                value={props.intiText}
-                onChange={(e) => props.setText(e.target.value)} />
-            </div>)
+            {props.isEdit ? <EditOption 
+                intiText={props.intiText}
+                audio={props.audio}
+                setAudio={props.setAudio}
+                setText={props.setText}
+                />
                 : colorDisplayText(props.intiText, props.text)}
         </div>
     );

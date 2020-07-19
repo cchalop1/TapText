@@ -9,6 +9,7 @@ interface Props {
     setTimer: (arg: number) => void;
     text: string;
     setText: (text: string) => void;
+    audio: HTMLAudioElement | null;
     initText: string;
 }
 
@@ -47,7 +48,10 @@ export const TextEditor: React.FC<Props> = (props) => {
                     props.setIsActive(true);
                 }
                 props.setText(e.target.value);
-                props.setSameText(checkSameValue(e.target.value, props.initText));
+                const tmp = checkSameValue(e.target.value, props.initText);
+                if (!tmp && props.audio !== null)
+                    props.audio.play();
+                props.setSameText(tmp);
             }} />
     );
 };

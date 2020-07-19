@@ -41,3 +41,11 @@
 .lasttime {
     font-size: 15px;
 }
+
+.option {
+    font-size: 20px;
+    width: auto; 
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+}
