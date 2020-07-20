@@ -105,9 +105,9 @@ const App = () => {
           isEdit={isEdit}
           textareaRef={textareaRef}
           setIsEdit={setIsEdit} />
-        <p className="name">Create by <a href="https://cchalop1.com/">cchalop1</a></p>
+        <p className="name">Create by <a href="https://cchalop1.com/">Clement Chalopin @cchalop1</a></p>
       </div>
-      <ChartHistory history={tapTextHistory} />
+      <ChartHistory history={tapTextHistory} initText={initText} />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import '../style/editor.css';
 
 interface Props {
     history: Array<TapTextHistory>;
+    initText: string;
 }
 
 export const ChartHistory: React.FC<Props> = (props) => {
@@ -12,10 +13,10 @@ export const ChartHistory: React.FC<Props> = (props) => {
 
     useEffect(() => {
         const myChartRef = chartRef.current?.getContext("2d");
-        const labels: string[] = props.history.map(el => el.date);
-        const dataWordsPerMinutes: number[] = props.history.map(el => {
-            let wordsPerMinute: number = (el.text.split(' ').length / (el.time / 60000));
-            return wordsPerMinute;
+        const labels: Array<string> = props.history.map(el => el.date);
+        const dataWordsPerMinutes: Array<number> = props.history.map(el => {
+            let wordsperminute: number = (el.text.split(' ').length / (el.time / 60000));
+            return wordsperminute;
         });
 
         new Chart(myChartRef as any, {
@@ -39,16 +40,26 @@ export const ChartHistory: React.FC<Props> = (props) => {
                 legend: {
                     position: 'right',
                 },
-                title: {
-                    display: true,
-                    text: 'Chart.js Horizontal Bar Chart'
-                }
             }
         });
     }, [chartRef, props.history]);
 
+
+
     return (
         <div className="graph">
+            <h2>{(() => {
+                const dataWordsPerMinutes: Array<number> = props.history.map(el => {
+                    let wordsperminute: number = (el.text.split(' ').length / (el.time / 60000));
+                    return wordsperminute;
+                });
+                let all: number = 0;
+                for (let i = 0; i < dataWordsPerMinutes.length; i++) {
+                    all += dataWordsPerMinutes[i];
+                }
+                const estimateTime: number = props.initText.split(' ').length / (Math.round(all / dataWordsPerMinutes.length) / 60);
+                return `Averge words per minutes ${Math.round(all / dataWordsPerMinutes.length)} estimate time for this text ${Math.round(estimateTime * 100) / 100}s`;
+            })()}</h2>
             <canvas
                 id='myChart'
                 ref={chartRef}

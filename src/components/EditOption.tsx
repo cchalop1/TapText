@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../style/editor.css';
 import { wordsFr, wordsUs } from '../assets/listWords';
 
@@ -31,10 +31,6 @@ export const EditOption: React.FC<Props> = (props) => {
         }
         return newInitText;
     }
-
-    useEffect(() => {
-
-    }, []);
 
     return (<div className="option"><input
         type='text'
