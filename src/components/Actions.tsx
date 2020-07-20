@@ -8,12 +8,16 @@ interface Props {
     clearHistory: () => void;
     isEdit: boolean;
     setIsEdit: (edit: boolean) => void;
+    textareaRef: React.RefObject<HTMLTextAreaElement>;
 }
 
 export const Actions: React.FC<Props> = (props) => {
     return (<div className="history">
         {props.isEdit ?
-            <button className="ok" onClick={(e) => props.setIsEdit(false)}>OK</button>
+            <button className="ok" onClick={(e) => {
+                props.setIsEdit(false);
+                props.textareaRef.current?.focus();
+            }}>OK</button>
             :
             <button className="edit" onClick={() => props.setIsEdit(true)}><b>Edit</b></button>
         }

@@ -27,6 +27,7 @@ const App = () => {
   const [tapTextHistory, setTapTextHistory] = useState<Array<TapTextHistory>>([]);
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [audio, setAudio] = useState<HTMLAudioElement | null>(new Audio('https://lasonotheque.org/UPLOAD/mp3/1111.mp3'));
+  let textareaRef: React.RefObject<HTMLTextAreaElement> = React.createRef();
 
 
   useEffect(() => {
@@ -83,6 +84,7 @@ const App = () => {
           <TextEditor
             initText={initText}
             isSameText={isSameText}
+            isEdit={isEdit}
             setSameText={setSameText}
             isActive={isActive}
             setIsActive={setIsActive}
@@ -90,12 +92,14 @@ const App = () => {
             text={text}
             setText={setText}
             audio={audio}
+            textareaRef={textareaRef}
           />
         </div>
         <Actions
           history={tapTextHistory}
           clearHistory={clearHistory}
           isEdit={isEdit}
+          textareaRef={textareaRef}
           setIsEdit={setIsEdit} />
         <p className="name">Create by <a href="https://cchalop1.com/">cchalop1</a></p>
       </div>

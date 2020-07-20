@@ -13,13 +13,13 @@ export const EditOption: React.FC<Props> = (props) => {
         type='text'
         value={props.intiText}
         onChange={(e) => props.setText(e.target.value)} />
-        <input
+        <div><input
             className="btn-audio"
             type="checkbox"
             defaultChecked={props.audio === null ? false : true}
             onChange={() => {
                 props.setAudio(props.audio === null ? new Audio('https://lasonotheque.org/UPLOAD/mp3/1111.mp3') : null);
             }}
-        /> audio
+        /> audio</div>
     </div>);
 }

@@ -11,6 +11,8 @@ interface Props {
     setText: (text: string) => void;
     audio: HTMLAudioElement | null;
     initText: string;
+    isEdit: boolean;
+    textareaRef: React.RefObject<HTMLTextAreaElement>;
 }
 
 export const checkSameValue = (str: string, initStr: string) => {
@@ -37,21 +39,24 @@ export const TextEditor: React.FC<Props> = (props) => {
             autoFocus
             className="editor"
             value={props.text}
-            placeholder="Write text here !"
+            placeholder={props.isEdit ? "Click OK for start" : "Write text here !"}
             style={{
                 borderColor: borderColor,
 
             }}
+            ref={props.textareaRef}
             onChange={e => {
-                if (!props.isActive) {
-                    props.setTimer(Date.now());
-                    props.setIsActive(true);
+                if (!props.isEdit) {
+                    if (!props.isActive) {
+                        props.setTimer(Date.now());
+                        props.setIsActive(true);
+                    }
+                    props.setText(e.target.value);
+                    const tmp = checkSameValue(e.target.value, props.initText);
+                    if (!tmp && props.audio)
+                        props.audio.play();
+                    props.setSameText(tmp);
                 }
-                props.setText(e.target.value);
-                const tmp = checkSameValue(e.target.value, props.initText);
-                if (!tmp && props.audio !== null)
-                    props.audio.play();
-                props.setSameText(tmp);
             }} />
     );
 };
