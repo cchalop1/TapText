@@ -27,6 +27,7 @@ const App = () => {
   const [tapTextHistory, setTapTextHistory] = useState<Array<TapTextHistory>>([]);
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [audio, setAudio] = useState<HTMLAudioElement | null>(new Audio('https://lasonotheque.org/UPLOAD/mp3/1111.mp3'));
+  const [lang, setLang] = useState<Array<boolean>>([true, false]);
   let textareaRef: React.RefObject<HTMLTextAreaElement> = React.createRef();
 
 
@@ -75,10 +76,13 @@ const App = () => {
         <div className="main">
           <DisplayText
             intiText={initText}
+            setInitText={setInitText}
             text={text}
             setText={setInitText}
             isEdit={isEdit}
             audio={audio}
+            lang={lang}
+            setLang={setLang}
             setAudio={setAudio}
             setIsEdit={setIsEdit} />
           <TextEditor

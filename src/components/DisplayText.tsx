@@ -10,6 +10,9 @@ interface Props {
     setIsEdit: (edit: boolean) => void;
     audio: HTMLAudioElement | null;
     setAudio: (param: HTMLAudioElement | null) => void;
+    setInitText: (initText: string) => void;
+    lang: Array<boolean>
+    setLang: (param: Array<boolean>) => void;
 }
 
 export const DisplayText: React.FC<Props> = (props) => {
@@ -37,12 +40,15 @@ export const DisplayText: React.FC<Props> = (props) => {
 
     return (
         <div className="edit-text">
-            {props.isEdit ? <EditOption 
+            {props.isEdit ? <EditOption
                 intiText={props.intiText}
                 audio={props.audio}
                 setAudio={props.setAudio}
                 setText={props.setText}
-                />
+                setInitText={props.setInitText}
+                lang={props.lang}
+                setLang={props.setLang}
+            />
                 : colorDisplayText(props.intiText, props.text)}
         </div>
     );
