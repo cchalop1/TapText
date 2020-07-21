@@ -22,6 +22,13 @@
 .option {
     margin-top: 20px;
 }
+
+.option input {
+    font-size: 20px;
+}
+.initText { 
+    width: 50%;
+}
  
 .editor {
     height: 15vh;

@@ -37,9 +37,10 @@ export const EditOption: React.FC<Props> = (props) => {
     return (<div className="option"><input
         type='text'
         value={props.intiText}
+        className="initText"
         onChange={(e) => props.setText(e.target.value)} />
         <div>
-            <input type="range" min="1" max="40" value={nbWords} className="nb-words" onChange={(e) => {
+            <input type="range" min="1" max="30" value={nbWords} className="nb-words" onChange={(e) => {
                 const nb: number = Number(e.target.value);
                 setNbWords(nb);
                 props.setInitText(buildRandomString(nb));
