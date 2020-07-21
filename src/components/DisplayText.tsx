@@ -1,6 +1,7 @@
 import React from 'react';
 import '../style/editor.css';
 import { EditOption } from './EditOption';
+import { TapTextHistory } from './App';
 
 interface Props {
     text: string;
@@ -13,6 +14,7 @@ interface Props {
     setInitText: (initText: string) => void;
     lang: Array<boolean>
     setLang: (param: Array<boolean>) => void;
+    history: Array<TapTextHistory>;
 }
 
 export const DisplayText: React.FC<Props> = (props) => {
@@ -48,6 +50,7 @@ export const DisplayText: React.FC<Props> = (props) => {
                 setInitText={props.setInitText}
                 lang={props.lang}
                 setLang={props.setLang}
+                history={props.history}
             />
                 : colorDisplayText(props.intiText, props.text)}
         </div>

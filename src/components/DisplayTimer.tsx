@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { TapTextHistory } from './App';
+import { TimeEstimate } from './TimeEstimate'
 import '../style/editor.css';
 
 const UPDATE_TIME = 10;
 
 interface Props {
     timer: number;
+    history: Array<TapTextHistory>;
     isActive: boolean;
+    intiText: string;
 }
 
 export const DisplayTimer: React.FC<Props> = (props) => {
@@ -20,16 +24,14 @@ export const DisplayTimer: React.FC<Props> = (props) => {
             return () => clearInterval(interval);
         }
     }, [currentTime, props.isActive]);
+    return props.isActive ? (<div className="chrono-div"><h1 className="chrono">{(() => {
+        let ms = Math.round(((currentTime - props.timer) / 10) % 60);
+        let s = Math.round(((currentTime - props.timer) / 1000) % 60);
+        let min = Math.floor((currentTime - props.timer) / 60000);
 
-    if (props.isActive) {
-        return (<h1 className="chrono">{(() => {
-            let ms = Math.round(((currentTime - props.timer) / 10) % 60);
-            let s = Math.round(((currentTime - props.timer) / 1000) % 60);
-            let min = Math.floor((currentTime - props.timer) / 60000);
+        return `${min < 10 ? `0${min}` : min}:${s < 10 ? `0${s}` : s}:${ms < 10 ? `0${ms}` : ms}`
+    })()}</h1><TimeEstimate history={props.history} intiText={props.intiText} /></div>)
+        :
+        (<div className="chrono-div"><h1 className="chrono">00:00:00</h1><TimeEstimate history={props.history} intiText={props.intiText} /></div>);
 
-            return `${min < 10 ? `0${min}` : min}:${s < 10 ? `0${s}` : s}:${ms < 10 ? `0${ms}` : ms}`
-        })()}</h1>);
-    } else {
-        return (<h1 className="chrono">00:00:00</h1>)
-    }
 }

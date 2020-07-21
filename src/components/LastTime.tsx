@@ -19,5 +19,5 @@ export const LastTime: React.FC<Props> = (props) => {
     if (props.history.length === 0)
         return null;
     else
-        return <h3 className="lasttime">{formatTime(props.history[props.history.length - 1].time)}</h3>;
+        return <h3 className="chrono-div">{formatTime(props.history[props.history.length - 1].time)}</h3>;
 }

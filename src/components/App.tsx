@@ -70,10 +70,11 @@ const App = () => {
 
   return (
     <div className="App">
-      <div className="center">
-        <DisplayTimer timer={timer} isActive={isActive} />
-        <LastTime history={tapTextHistory} />
-        <div className="main">
+        <div className="time">
+          <DisplayTimer timer={timer} isActive={isActive} history={tapTextHistory} intiText={initText} />
+          <LastTime history={tapTextHistory} />
+        </div>
+        <div className="text-div">
           <DisplayText
             intiText={initText}
             setInitText={setInitText}
@@ -82,6 +83,7 @@ const App = () => {
             isEdit={isEdit}
             audio={audio}
             lang={lang}
+            history={tapTextHistory}
             setLang={setLang}
             setAudio={setAudio}
             setIsEdit={setIsEdit} />
@@ -98,16 +100,17 @@ const App = () => {
             audio={audio}
             textareaRef={textareaRef}
           />
+          <Actions
+            history={tapTextHistory}
+            clearHistory={clearHistory}
+            isEdit={isEdit}
+            textareaRef={textareaRef}
+            setIsEdit={setIsEdit} />
+          <p className="name">Create by <a href="https://cchalop1.com/">Clement Chalopin @cchalop1</a></p>
         </div>
-        <Actions
-          history={tapTextHistory}
-          clearHistory={clearHistory}
-          isEdit={isEdit}
-          textareaRef={textareaRef}
-          setIsEdit={setIsEdit} />
-        <p className="name">Create by <a href="https://cchalop1.com/">Clement Chalopin @cchalop1</a></p>
-      </div>
-      <ChartHistory history={tapTextHistory} initText={initText} />
+        <div className="chart">
+          <ChartHistory history={tapTextHistory} initText={initText} />
+        </div>
     </div>
   );
 }

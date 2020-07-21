@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../style/editor.css';
 import { wordsFr, wordsUs } from '../assets/listWords';
+import { TapTextHistory } from './App';
 
 interface Props {
     intiText: string;
@@ -10,6 +11,7 @@ interface Props {
     setInitText: (initText: string) => void;
     lang: Array<boolean>
     setLang: (param: Array<boolean>) => void;
+    history: Array<TapTextHistory>;
 }
 
 
